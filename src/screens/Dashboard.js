@@ -118,7 +118,7 @@ export default function Dashboard(props) {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Text style={{color: '#6f7'}}>{itemRate}</Text>
+            <Text style={{color: '#6f7'}}>{itemRate} / hr</Text>
           </View>
         </View>
         <View
