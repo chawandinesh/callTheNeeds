@@ -103,6 +103,7 @@ function Profile(props) {
           style={{
             width: width * 1,
             height: height * 0.06,
+            marginTop: height * 0.04,
             flexDirection: 'row',
             justifyContent: 'flex-end',
             //   backgroundColor: 'black',

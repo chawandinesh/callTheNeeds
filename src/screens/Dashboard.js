@@ -238,6 +238,7 @@ export default function Dashboard(props) {
         style={{
           height: height * 0.05,
           alignItems: 'center',
+          marginTop: height * 0.04,
           flexDirection: 'row',
           alignSelf: 'center',
           width: width * 0.9,

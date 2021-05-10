@@ -87,6 +87,7 @@ function ShowDetails(props) {
           height: height * 0.06,
           alignItems: 'center',
           flexDirection: 'row',
+          marginTop: height * 0.04,
           //   justifyContent: 'center',
           //    backgroundColor: 'orange',
         }}>

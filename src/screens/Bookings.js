@@ -355,6 +355,7 @@ export default function Bookings(props) {
         style={{
           height: height * 0.08,
           width: width,
+          marginTop: height * 0.04,
           alignItems: 'center',
           justifyContent: 'center',
         }}>
