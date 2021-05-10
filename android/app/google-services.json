@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "958428765677",
+    "project_id": "calltheneeds",
+    "storage_bucket": "calltheneeds.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958428765677:android:56294acb6496878558dbe4",
+        "android_client_info": {
+          "package_name": "com.calltheneeds"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "958428765677-qkis2jk7k903c1vg9jc01vqnrpneluvt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHLSLl4PHcGFq5s67GwEvXYCWoK6dD5Ko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "958428765677-qkis2jk7k903c1vg9jc01vqnrpneluvt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
