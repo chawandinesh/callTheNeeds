@@ -9,6 +9,7 @@ import {
   TextInput,
   Image,
 } from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 import ImagePicker from 'react-native-image-crop-picker';
 import firebaseStorage from '@react-native-firebase/storage';
 import moment from 'moment';
@@ -78,9 +79,10 @@ function ShowDetails(props) {
 
   return (
     //   <SafeAreaView>
+    <KeyboardAwareScrollView>
     <ImageBackground
       source={require('../assets/bookingbg.jpeg')}
-      style={{flex: 1}}>
+      style={{height: height, width:width}}>
       <View
         style={{
           width: width * 1,
@@ -421,6 +423,7 @@ function ShowDetails(props) {
         </View>
       )}
     </ImageBackground>
+    </KeyboardAwareScrollView>
     //   </SafeAreaView>
   );
 }
