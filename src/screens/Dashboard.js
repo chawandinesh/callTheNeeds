@@ -202,14 +202,28 @@ export default function Dashboard(props) {
   };
 
   const getData = () => {
-    if (allUsersData.filter(e => e.data.type !== profileInfo.type).length) {
-      return (
-        <FlatList
-          data={allUsersData.filter(e => e.data.type !== profileInfo.type)}
-          renderItem={renderItem}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      );
+    if (allUsersData.filter(e => e.data.type === "shops").length) {
+      
+      if(profileInfo.type === 'shops' ){
+        console.log(allUsersData.filter((e) => e.data.type === "shops" && e.id !== firebaseAuth().currentUser.uid).map((e) => e.id), firebaseAuth().currentUser.uid)
+        return (
+          <FlatList
+            data={allUsersData.filter((e) => e.data.type === "shops" && e.id !== firebaseAuth().currentUser.uid)}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        );
+
+      }else{
+
+        return (
+          <FlatList
+            data={allUsersData.filter(e => e.data.type === "shops")}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        );
+      }
     } else {
       return (
         <View

@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Button,
 } from 'react-native';
+import {useIsFocused} from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message';
 import {CheckBox, Spinner} from 'native-base';
@@ -19,8 +20,10 @@ import firebaseFirestore from '@react-native-firebase/firestore';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 const {height, width} = Dimensions.get('window');
 function Signup(props) {
+  const isFocused = useIsFocused()
   const [checkBox, setCheckBox] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [profileInfo, setProfileInfo] = useState({})
   const [signupState, setSignupState] = useState({
     email: '',
     password: '',
@@ -28,6 +31,10 @@ function Signup(props) {
     type: 'shops',
     name: '',
   });
+
+  const getInitialData = async() => {}
+
+  console.log(signupState,'signupstate')
 
   const handleRegister = () => {
     const {email, password, confirmPassword, type, name} = signupState;
@@ -70,7 +77,7 @@ function Signup(props) {
               name: signupState.name,
               email: signupState.email,
               password: signupState.password,
-              type: 'shops',
+              type: signupState.type,
               createdAt: firebaseFirestore.FieldValue.serverTimestamp(),
               description: '',
               image: '',

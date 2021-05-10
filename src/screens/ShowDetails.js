@@ -9,7 +9,7 @@ import {
   TextInput,
   Image,
 } from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import ImagePicker from 'react-native-image-crop-picker';
 import firebaseStorage from '@react-native-firebase/storage';
 import moment from 'moment';
@@ -24,12 +24,14 @@ const {height, width} = Dimensions.get('window');
 function ShowDetails(props) {
   const isFocused = useIsFocused();
   const [profileInfo, setProfileInfo] = useState({});
-//   console.log(profileInfo, 'profileInnfo')
+  //   console.log(profileInfo, 'profileInnfo')
   const [bookingData, setBookingData] = useState({
-    shopImage: props.route.params.data.data.image ? props.route.params.data.data.image : null,
+    shopImage: props.route.params.data.data.image
+      ? props.route.params.data.data.image
+      : null,
     userImage: null,
-    bookingDate:  moment(new Date()).format('MMM DD,yyyy'),
-    bookingTime:  moment(new Date(), 'HH:mm:ss').format('hh:mm A'),
+    bookingDate: moment(new Date()).format('MMM DD,yyyy'),
+    bookingTime: moment(new Date(), 'HH:mm:ss').format('hh:mm A'),
     notes: '',
     userId: firebaseAuth().currentUser.uid,
     shopId: props.route.params.data.id,
@@ -38,11 +40,11 @@ function ShowDetails(props) {
     status: 'pending',
   });
   const [loading, setLoading] = useState(false);
-  console.log(bookingData,'bookData')
+  console.log(bookingData, 'bookData');
   useEffect(() => {
     const date = moment(new Date()).format('MMM DD,yyyy');
     const time = moment(new Date(), 'HH:mm:ss').format('hh:mm A');
-    
+
     // setBookingData({
     //     ...bookingData,
     //     bookingDate: date,
@@ -55,9 +57,8 @@ function ShowDetails(props) {
       .then(res => {
         //  console.log(res.data().type)
         setProfileInfo(res.data());
-        setBookingData({...bookingData, userImage: res.data().image})
+        setBookingData({...bookingData, userImage: res.data().image});
       });
-
   }, [isFocused]);
 
   const handleBookSlot = async () => {
@@ -80,60 +81,60 @@ function ShowDetails(props) {
   return (
     //   <SafeAreaView>
     <KeyboardAwareScrollView>
-    <ImageBackground
-      source={require('../assets/bookingbg.jpeg')}
-      style={{height: height, width:width}}>
-      <View
-        style={{
-          width: width * 1,
-          height: height * 0.06,
-          alignItems: 'center',
-          flexDirection: 'row',
-          marginTop: height * 0.04,
-          //   justifyContent: 'center',
-          //    backgroundColor: 'orange',
-        }}>
-        <View>
-          <TouchableOpacity
-            style={{justifyContent: 'center', padding: 5}}
-            onPress={() => props.navigation.goBack()}>
-            <AntIcon name="arrowleft" style={{fontSize: height * 0.05}} />
-          </TouchableOpacity>
+      <ImageBackground
+        source={require('../assets/bookingbg.jpeg')}
+        style={{height: height, width: width}}>
+        <View
+          style={{
+            width: width * 1,
+            height: height * 0.06,
+            alignItems: 'center',
+            flexDirection: 'row',
+            marginTop: height * 0.04,
+            //   justifyContent: 'center',
+            //    backgroundColor: 'orange',
+          }}>
+          <View>
+            <TouchableOpacity
+              style={{justifyContent: 'center', padding: 5}}
+              onPress={() => props.navigation.goBack()}>
+              <AntIcon name="arrowleft" style={{fontSize: height * 0.05}} />
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              //  backgroundColor: 'pink',
+              width: width * 0.8,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <Text
+              style={{
+                textAlign: 'center',
+                fontSize: height * 0.03,
+                fontWeight: 'bold',
+                color: 'black',
+              }}>
+              Details
+            </Text>
+          </View>
         </View>
         <View
           style={{
-            //  backgroundColor: 'pink',
-            width: width * 0.8,
-            alignItems: 'center',
+            alignSelf: 'center',
             justifyContent: 'center',
+            alignItems: 'center',
+            width: width * 0.32,
+            height: height * 0.15,
+            backgroundColor: 'pink',
+            marginTop: 5,
+            marginLeft: 10,
+            borderRadius: 75,
+            borderColor: 'black',
+            borderWidth: 3,
           }}>
-          <Text
-            style={{
-              textAlign: 'center',
-              fontSize: height * 0.03,
-              fontWeight: 'bold',
-              color: 'black',
-            }}>
-            Details
-          </Text>
-        </View>
-      </View>
-      <View
-        style={{
-          alignSelf: 'center',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: width * 0.32,
-          height: height * 0.15,
-          backgroundColor: 'pink',
-          marginTop: 5,
-          marginLeft: 10,
-          borderRadius: 75,
-          borderColor: 'black',
-          borderWidth: 3,
-        }}>
-        {
-            // profileInfo.type === 'users' 
+          {
+            // profileInfo.type === 'users'
             // ?
             // bookingData.shopImage ? (
             //     <Image
@@ -167,220 +168,217 @@ function ShowDetails(props) {
             // :
             // <EntypoIcon name="images" style={{fontSize: height * 0.035}} />
 
-            
-        
-        bookingData.shopImage ? (
-          <Image
-            source={{uri: bookingData.shopImage}}
-            style={{
-              height: height * 0.15,
-              width: width * 0.32,
-              borderRadius: 75,
-              borderWidth: 3,
-            }}
-          />
-        ) : (
-          <EntypoIcon name="images" style={{fontSize: height * 0.035}} />
-        )
-        }
-      </View>
-      <View
-        style={{
-          alignContent: 'center',
-          alignSelf: 'center',
-          width: width * 1,
-          height: height * 0.05,
-          //   backgroundColor: 'pink',
-        }}>
-        <Text
+            bookingData.shopImage ? (
+              <Image
+                source={{uri: bookingData.shopImage}}
+                style={{
+                  height: height * 0.15,
+                  width: width * 0.32,
+                  borderRadius: 75,
+                  borderWidth: 3,
+                }}
+              />
+            ) : (
+              <EntypoIcon name="images" style={{fontSize: height * 0.035}} />
+            )
+          }
+        </View>
+        <View
           style={{
-            textAlign: 'center',
-            color: 'black',
-            fontWeight: 'bold',
-            fontSize: 30,
-          }}>
-          {bookingData.shopName}
-        </Text>
-      </View>
-      <View
-        style={{
-          alignContent: 'center',
-          alignSelf: 'center',
-          width: width * 0.95,
-          height: 'auto',
-          maxHeight: height * 0.1,
-          //   backgroundColor: 'pink',
-        }}>
-        <Text
-          style={{
-            textAlign: 'center',
-            color: 'black',
-            fontWeight: 'normal',
-            fontSize: 17,
-          }}>
-          {props.route.params.data.data.description.slice(0, 39)}
-        </Text>
-      </View>
-      <View
-        style={{
-          marginTop: 1,
-          width: width * 0.5,
-          //   backgroundColor: 'pink',
-          height: height * 0.08,
-          justifyContent: 'center',
-          alignContent: 'center',
-        }}>
-        <Text
-          style={{
-            // padding: 8,
-            textAlign: 'left',
             alignContent: 'center',
-            justifyContent: 'center',
-            color: 'black',
-            fontWeight: 'bold',
-            fontSize: 25,
+            alignSelf: 'center',
+            width: width * 1,
+            height: height * 0.05,
+            //   backgroundColor: 'pink',
           }}>
-          Notes :
-        </Text>
-      </View>
-      <View
-        style={{
-          marginTop: 5,
-          width: width * 1,
-          height: height * 0.16,
-          alignSelf: 'center',
-          alignItems: 'center',
-          backgroundColor: '#75888C',
-          borderWidth: 3,
-          borderColor: 'black',
-        }}>
-        <TextInput
-          numberOfLines={4}
-          onChangeText={text => setBookingData({...bookingData, notes: text})}
-          value={bookingData.notes}
-          editable = {profileInfo.type === 'users'}
-          multiline
+          <Text
+            style={{
+              textAlign: 'center',
+              color: 'black',
+              fontWeight: 'bold',
+              fontSize: 30,
+            }}>
+            {bookingData.shopName}
+          </Text>
+        </View>
+        <View
+          style={{
+            alignContent: 'center',
+            alignSelf: 'center',
+            width: width * 0.95,
+            height: 'auto',
+            maxHeight: height * 0.1,
+            //   backgroundColor: 'pink',
+          }}>
+          <Text
+            style={{
+              textAlign: 'center',
+              color: 'black',
+              fontWeight: 'normal',
+              fontSize: 17,
+            }}>
+            {props.route.params.data.data.description.slice(0, 39)}
+          </Text>
+        </View>
+        <View
+          style={{
+            marginTop: 1,
+            width: width * 0.5,
+            //   backgroundColor: 'pink',
+            height: height * 0.08,
+            justifyContent: 'center',
+            alignContent: 'center',
+          }}>
+          <Text
+            style={{
+              // padding: 8,
+              textAlign: 'left',
+              alignContent: 'center',
+              justifyContent: 'center',
+              color: 'black',
+              fontWeight: 'bold',
+              fontSize: 25,
+            }}>
+            Notes :
+          </Text>
+        </View>
+        <View
           style={{
             marginTop: 5,
-            width: width * 0.88,
-            height: height * 0.14,
-            backgroundColor: 'white',
-            borderBottomColor: 'black',
-            borderBottomWidth: 2,
-            borderRadius: 5,
-          }}
-          placeholder="Add Booking about your shop"
-        />
-      </View>
-      <View
-        style={{
-          marginTop: 7,
-          alignItems: 'center',
-          alignContent: 'center',
-          alignSelf: 'center',
-          width: width * 0.97,
-          height: height * 0.07,
-          //   backgroundColor: 'pink',
-          flexDirection: 'row',
-          borderWidth: 3,
-          borderColor: 'black',
-          borderRadius: 3,
-        }}>
-        <Text
-          style={{
-            padding: 8,
-            textAlign: 'left',
-            color: 'black',
-            fontWeight: 'bold',
-            fontSize: 20,
+            width: width * 1,
+            height: height * 0.16,
+            alignSelf: 'center',
+            alignItems: 'center',
+            backgroundColor: '#75888C',
+            borderWidth: 3,
+            borderColor: 'black',
           }}>
-          Booking Date
-        </Text>
-        <View style={{alignItems: 'flex-end', width: width * 0.57}}>
+          <TextInput
+            numberOfLines={4}
+            onChangeText={text => setBookingData({...bookingData, notes: text})}
+            value={bookingData.notes}
+            // editable={profileInfo.type === 'users'}
+            multiline
+            style={{
+              marginTop: 5,
+              width: width * 0.88,
+              height: height * 0.14,
+              backgroundColor: 'white',
+              borderBottomColor: 'black',
+              borderBottomWidth: 2,
+              borderRadius: 5,
+            }}
+            placeholder="Add Booking about your shop"
+          />
+        </View>
+        <View
+          style={{
+            marginTop: 7,
+            alignItems: 'center',
+            alignContent: 'center',
+            alignSelf: 'center',
+            width: width * 0.97,
+            height: height * 0.07,
+            //   backgroundColor: 'pink',
+            flexDirection: 'row',
+            borderWidth: 3,
+            borderColor: 'black',
+            borderRadius: 3,
+          }}>
           <Text
             style={{
-              textAlign: 'center',
-              color: 'green',
-              fontWeight: 'normal',
+              padding: 8,
+              textAlign: 'left',
+              color: 'black',
+              fontWeight: 'bold',
               fontSize: 20,
             }}>
-            {bookingData.bookingDate}
+            Booking Date
           </Text>
+          <View style={{alignItems: 'flex-end', width: width * 0.57}}>
+            <Text
+              style={{
+                textAlign: 'center',
+                color: 'green',
+                fontWeight: 'normal',
+                fontSize: 20,
+              }}>
+              {bookingData.bookingDate}
+            </Text>
+          </View>
         </View>
-      </View>
-      <View
-        style={{
-          marginTop: 7,
-          alignItems: 'center',
-          alignContent: 'center',
-          alignSelf: 'center',
-          width: width * 0.97,
-          height: height * 0.07,
-          //   backgroundColor: 'pink',
-          flexDirection: 'row',
-          borderWidth: 3,
-          borderColor: 'black',
-          borderRadius: 3,
-        }}>
-        <Text
+        <View
           style={{
-            padding: 8,
-            textAlign: 'left',
-            color: 'black',
-            fontWeight: 'bold',
-            fontSize: 20,
+            marginTop: 7,
+            alignItems: 'center',
+            alignContent: 'center',
+            alignSelf: 'center',
+            width: width * 0.97,
+            height: height * 0.07,
+            //   backgroundColor: 'pink',
+            flexDirection: 'row',
+            borderWidth: 3,
+            borderColor: 'black',
+            borderRadius: 3,
           }}>
-          Booking Time
-        </Text>
-        <View style={{alignItems: 'flex-end', width: width * 0.57}}>
           <Text
             style={{
-              textAlign: 'center',
-              color: 'green',
-              fontWeight: 'normal',
+              padding: 8,
+              textAlign: 'left',
+              color: 'black',
+              fontWeight: 'bold',
               fontSize: 20,
             }}>
-            {bookingData.bookingTime}
+            Booking Time
           </Text>
+          <View style={{alignItems: 'flex-end', width: width * 0.57}}>
+            <Text
+              style={{
+                textAlign: 'center',
+                color: 'green',
+                fontWeight: 'normal',
+                fontSize: 20,
+              }}>
+              {bookingData.bookingTime}
+            </Text>
+          </View>
         </View>
-      </View>
-      <View
-        style={{
-          marginTop: 7,
-          alignItems: 'center',
-          alignContent: 'center',
-          alignSelf: 'center',
-          width: width * 0.97,
-          height: height * 0.07,
-          //   backgroundColor: 'pink',
-          flexDirection: 'row',
-          borderWidth: 3,
-          borderColor: 'black',
-          borderRadius: 3,
-        }}>
-        <Text
+        <View
           style={{
-            padding: 8,
-            textAlign: 'left',
-            color: 'black',
-            fontWeight: 'bold',
-            fontSize: 20,
+            marginTop: 7,
+            alignItems: 'center',
+            alignContent: 'center',
+            alignSelf: 'center',
+            width: width * 0.97,
+            height: height * 0.07,
+            //   backgroundColor: 'pink',
+            flexDirection: 'row',
+            borderWidth: 3,
+            borderColor: 'black',
+            borderRadius: 3,
           }}>
-          Rate
-        </Text>
-        <View style={{alignItems: 'flex-end', width: width * 0.57}}>
           <Text
             style={{
-              textAlign: 'center',
-              color: 'green',
-              fontWeight: 'normal',
+              padding: 8,
+              textAlign: 'left',
+              color: 'black',
+              fontWeight: 'bold',
               fontSize: 20,
             }}>
-            ${bookingData.rate}
+            Rate
           </Text>
+          <View style={{alignItems: 'flex-end', width: width * 0.57}}>
+            <Text
+              style={{
+                textAlign: 'center',
+                color: 'green',
+                fontWeight: 'normal',
+                fontSize: 20,
+              }}>
+              ${bookingData.rate}
+            </Text>
+          </View>
         </View>
-      </View>
-      {profileInfo.type === 'shops' ? null : (
         <View
           style={{
             padding: 5,
@@ -421,8 +419,7 @@ function ShowDetails(props) {
             )}
           </TouchableOpacity>
         </View>
-      )}
-    </ImageBackground>
+      </ImageBackground>
     </KeyboardAwareScrollView>
     //   </SafeAreaView>
   );
