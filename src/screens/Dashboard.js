@@ -202,23 +202,23 @@ export default function Dashboard(props) {
   };
 
   const getData = () => {
-    if (allUsersData.filter(e => e.data.type === "shops").length) {
-      
-      if(profileInfo.type === 'shops' ){
-        console.log(allUsersData.filter((e) => e.data.type === "shops" && e.id !== firebaseAuth().currentUser.uid).map((e) => e.id), firebaseAuth().currentUser.uid)
+    if (allUsersData.filter(e => e.data.type === 'shops' &&  e.id !== firebaseAuth().currentUser.uid).length) {
+      if (profileInfo.type === 'shops') {
         return (
           <FlatList
-            data={allUsersData.filter((e) => e.data.type === "shops" && e.id !== firebaseAuth().currentUser.uid)}
+            data={allUsersData.filter(
+              e =>
+                e.data.type === 'shops' &&
+                e.id !== firebaseAuth().currentUser.uid,
+            )}
             renderItem={renderItem}
             keyExtractor={(item, index) => index.toString()}
           />
         );
-
-      }else{
-
+      } else {
         return (
           <FlatList
-            data={allUsersData.filter(e => e.data.type === "shops")}
+            data={allUsersData.filter(e => e.data.type === 'shops')}
             renderItem={renderItem}
             keyExtractor={(item, index) => index.toString()}
           />
@@ -271,7 +271,10 @@ export default function Dashboard(props) {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-          {profileInfo.type === 'users' ? (
+          <Text style={{fontWeight: 'bold', fontSize: height * 0.02}}>
+            Shops List
+          </Text>
+          {/* {profileInfo.type === 'users' ? (
             <Text style={{fontWeight: 'bold', fontSize: height * 0.02}}>
               Shops List
             </Text>
@@ -279,7 +282,7 @@ export default function Dashboard(props) {
             <Text style={{fontWeight: 'bold', fontSize: height * 0.02}}>
               Users List
             </Text>
-          )}
+          )} */}
         </View>
         <View>
           <Text style={{fontWeight: 'bold'}}>
