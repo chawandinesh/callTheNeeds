@@ -112,8 +112,21 @@ function Profile(props) {
             <View>
               {
                 profileInfo.type === "shops" ?
+              <View>
 
                 <AntIcon name="menuunfold" onPress={() => props.navigation.navigate('ShowShopRequests')}   style={{padding: 10, fontSize: height * 0.025}}/>
+                <Text
+              style={{
+                alignContent: 'center',
+                textAlign: 'center',
+                paddingRight: 10,
+                fontSize: height * 0.02,
+                fontWeight: 'normal',
+                color: 'black',
+              }}>
+              Requests
+            </Text>
+              </View>
                 : null
               }
             </View>
