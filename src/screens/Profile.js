@@ -105,9 +105,18 @@ function Profile(props) {
             height: height * 0.06,
             marginTop: height * 0.04,
             flexDirection: 'row',
-            justifyContent: 'flex-end',
+            justifyContent:'space-between'
+            // justifyContent: 'flex-end',
             //   backgroundColor: 'black',
           }}>
+            <View>
+              {
+                profileInfo.type === "shops" ?
+
+                <AntIcon name="menuunfold" onPress={() => props.navigation.navigate('ShowShopRequests')}   style={{padding: 10, fontSize: height * 0.025}}/>
+                : null
+              }
+            </View>
           <View>
             <AntIcon
               onPress={() => {

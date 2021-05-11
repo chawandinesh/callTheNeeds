@@ -12,6 +12,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import Bookings from '../screens/Bookings';
 import ShowDetails from '../screens/ShowDetails';
+import ShowShopRequests from '../screens/ShowShopRequests';
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 export default function Routes() {
@@ -148,6 +149,7 @@ export default function Routes() {
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="Home" component ={TabNavigation}/>
           <Stack.Screen name="ShowDetails" component={ShowDetails}/>
+          <Stack.Screen name="ShowShopRequests" component={ShowShopRequests}/>
         </Stack.Navigator>
       </NavigationContainer>
     );
