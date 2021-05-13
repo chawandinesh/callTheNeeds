@@ -258,13 +258,13 @@ export default function Dashboard(props) {
           width: width * 0.9,
           justifyContent: 'space-between',
         }}>
-        <View
+        {/* <View
           style={{
             height: height * 0.03,
             width: height * 0.03,
             borderRadius: 30,
             backgroundColor: '#383',
-          }}></View>
+          }}></View> */}
         <View
           style={{
             height: height * 0.03,
