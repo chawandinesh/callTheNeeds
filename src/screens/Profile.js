@@ -491,6 +491,8 @@ function Profile(props) {
                         borderBottomColor: 'black',
                         borderBottomWidth: 2,
                       }}
+                      numberOfLines={4}
+                      multiline
                       placeholder="Add Something about your shop"
                     />
                   </View>
